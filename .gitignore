@@ -1,5 +1,2 @@
-# Ignore the best.pt file in the server directory
-server/best.pt
-
 # Ignore node_modules in the server directory
 server/node_modules/
