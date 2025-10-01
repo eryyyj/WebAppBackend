@@ -1,2 +1,4 @@
 runs/
 Shrimp-larvae-detection-1/
+rtdetr-l.pt
+yolo11n.pt
