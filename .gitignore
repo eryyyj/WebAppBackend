@@ -1,5 +1,5 @@
 # Ignore node_modules in the server directory
 server/node_modules/
-
-
 server/rtdetr.pt
+node_modules/
+__pycache__/
