@@ -59,10 +59,19 @@ async def predict(image: UploadFile = File(...)):
     # 5. Encode processed image to base64
     processed_image_base64 = encode_image_to_base64(img_np)
 
-    # 6. Return JSON response
-    return JSONResponse({
+    # store the results in json_response
+    json_response = {
         "count": shrimp_count,
         "calculatedBiomassGrams": calculated_biomass_grams,
         "recommendedFeedGrams": recommended_feed_grams,
         "processedImageBase64": processed_image_base64
-    })
+    }
+    # reset the values for next prediction
+    shrimp_count = 0
+    calculated_biomass_grams = 0
+    recommended_feed_grams = 0
+    #reset processed Image
+    processed_image_base64 = ""
+
+    # 6. Return JSON response
+    return JSONResponse(json_response)
