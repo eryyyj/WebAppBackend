@@ -35,43 +35,27 @@ def encode_image_to_base64(image: np.ndarray) -> str:
 
 @app.post("/predict")
 async def predict(image: UploadFile = File(...)):
-    # 2. Receive image file
     file_bytes = await image.read()
     img_np = read_imagefile(file_bytes)
     img_rgb = cv2.cvtColor(img_np, cv2.COLOR_BGR2RGB)
 
-    # 3. Run inference
     results = model(img_rgb)
-
-    # 4. Post-processing: count, draw boxes, calculate biomass/feed
-    detections = results[0].boxes.xyxy.cpu().numpy()  # [x1, y1, x2, y2, conf, class]
+    detections = results[0].boxes.xyxy.cpu().numpy()
     shrimp_count = len(detections)
+    calculated_biomass_grams = round(shrimp_count * 0.035, 2)
+    recommended_feed_grams = round(calculated_biomass_grams * 0.15, 2)
 
-    # Example: simple biomass/feed calculation (customize as needed)
-    calculated_biomass_grams = round(shrimp_count * 0.035, 2)  # Example: 0.035g per fry
-    recommended_feed_grams = round(calculated_biomass_grams * 0.15, 2)  # Example: 15% of biomass
-
-    # Draw bounding boxes
     for box in detections:
         x1, y1, x2, y2 = map(int, box[:4])
         cv2.rectangle(img_np, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
-    # 5. Encode processed image to base64
     processed_image_base64 = encode_image_to_base64(img_np)
 
-    # store the results in json_response
     json_response = {
         "count": shrimp_count,
         "calculatedBiomassGrams": calculated_biomass_grams,
         "recommendedFeedGrams": recommended_feed_grams,
         "processedImageBase64": processed_image_base64
     }
-    # reset the values for next prediction
-    shrimp_count = 0
-    calculated_biomass_grams = 0
-    recommended_feed_grams = 0
-    #reset processed Image
-    processed_image_base64 = ""
 
-    # 6. Return JSON response
     return JSONResponse(json_response)
