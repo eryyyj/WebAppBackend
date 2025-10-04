@@ -1,0 +1,38 @@
+{
+  "os": "Windows-10-10.0.19045-SP0",
+  "python": "CPython 3.13.7",
+  "startedAt": "2025-10-02T12:50:11.829373Z",
+  "program": "<python with no main file>",
+  "git": {
+    "remote": "https://github.com/eryyyj/WebAppBackend.git",
+    "commit": "f9ac7e6b0dd74ba9e3413f95a005e8342cee7d63"
+  },
+  "email": "pisalboneryjay@gmail.com",
+  "root": "e:\\PD1ModelTrainings\\PD1ModelTrainingCodes",
+  "host": "ELAI",
+  "executable": "e:\\PD1ModelTrainings\\DLenv\\Scripts\\python.exe",
+  "cpu_count": 6,
+  "cpu_count_logical": 12,
+  "gpu": "NVIDIA GeForce RTX 2060 SUPER",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "1000202039296",
+      "used": "686759948288"
+    }
+  },
+  "memory": {
+    "total": "17107861504"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 2060 SUPER",
+      "memoryTotal": "8589934592",
+      "cudaCores": 2176,
+      "architecture": "Turing",
+      "uuid": "GPU-eaea0a4d-6955-ffc5-63c5-c5b8d630736f"
+    }
+  ],
+  "cudaVersion": "12.7",
+  "writerId": "j2506rqgfcfjpi7khtjkrwrj3jft09kw"
+}
